@@ -11,37 +11,6 @@
 </ul>
 
 <h2>Comments</h2>
-<% @article.comments.each do |comment| %>
-  <p>
-    <strong>Commenter:</strong>
-    <%= comment.commenter %>
-  </p>
+<%= render @article.comments %>
 
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.body %>
-  </p>
-<% end %>
-
-<%= form_with model:[@article, @article.comments.build] do |form| %>
-    <div>
-        <%= form.label :commenter %> <br>
-        <%= form.text_field :commenter %>
-        <% @article.errors.full_messages_for(:commenter).each do |message| %>
-        <div><%= message %></div>
-        <% end %>
-    </div>
-
-    <div>
-        <%= form.label :body %> <br>
-        <%= form.text_area :body %>
-    <% @article.errors.full_messages_for(:body).each do |message| %>
-        <div><%= message %></div>
-        <% end %>
-    </div>
-
-    <div>
-        <%= form.submit %>
-    </div>
-
-<% end %>
+<%= render "comments/form"%>
